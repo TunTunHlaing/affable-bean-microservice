@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html th:replace="layout/masterLayout :: layout(~{::main})" lang="en" xmlns:th="http://www.thymeleaf.org">
+<body>
+  <main role="main">
+
+    <div class="container mt-5">
+      <div class="row">
+        <div class="col-md-6">
+          <h3>Welcome to the online home of the Affable Bean Green Grocer.</h3>
+
+          <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi architecto autem cupiditate deleniti, eius eligendi hic, incidunt inventore ipsam iusto maiores molestias officia quasi quidem rerum tempora tenetur unde voluptatibus!</p>
+        </div>
+
+        <div class="col-md-6">
+
+          <div class="row mb-3">
+            <div class="col-md-6">
+
+              <a th:href="@{'/webui/products?category=dairy'}">
+                <img src="../static/bootstrap/images/categories/dairy.jpg" alt=""
+                     th:src="@{/bootstrap/images/categories/dairy.jpg}" class="img-fluid">
+              </a>
+
+            </div>
+
+            <div class="col-md-6">
+              <a th:href="@{'/webui/products?category=meats'}">
+                <img src="../static/bootstrap/images/categories/meats.jpg" alt=""
+                     th:src="@{/bootstrap/images/categories/meats.jpg}" class="img-fluid">
+              </a>
+            </div>
+
+          </div>
+
+          <div class="row mb-5">
+            <div class="col-md-6">
+              <a th:href="@{'/webui/products?category=bakery'}">
+                <img src="../static/bootstrap/images/categories/bakery.jpg" alt=""
+                     th:src="@{/bootstrap/images/categories/bakery.jpg}" class="img-fluid">
+              </a>
+
+            </div>
+
+            <div class="col-md-6">
+
+              <a th:href="@{'/webui/products?category=fruit and veg'}">
+                <img src="../static/bootstrap/images/categories/fruitveg.jpg" alt=""
+                     th:src="@{/bootstrap/images/categories/fruitveg.jpg}" class="img-fluid">
+              </a>
+
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  </main>
+</body>
+</html>

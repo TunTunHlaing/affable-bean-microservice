@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: affable-bean-backend-service
+  datasource:
+    url: jdbc:mysql://localhost:3306/affable_backend
+    username: root
+    password: KOTUN99
+  jpa:
+    hibernate:
+      ddl-auto: update
