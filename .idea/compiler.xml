@@ -8,6 +8,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="affablebean-backend" />
+        <module name="api-security" />
         <module name="affable-bean-ui" />
       </profile>
     </annotationProcessing>
@@ -16,6 +17,7 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="affable-bean-ui" options="" />
       <module name="affablebean-backend" options="" />
+      <module name="api-security" options="" />
     </option>
   </component>
 </project>

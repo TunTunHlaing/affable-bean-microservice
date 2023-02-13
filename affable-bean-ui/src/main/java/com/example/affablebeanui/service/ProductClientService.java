@@ -2,7 +2,9 @@ package com.example.affablebeanui.service;
 
 import com.example.affablebeanui.dto.ProductDto;
 import com.example.affablebeanui.dto.Products;
+import com.example.affablebeanui.exception.ProductNotFoundException;
 import jakarta.annotation.PostConstruct;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -35,7 +37,13 @@ public class ProductClientService {
 
     public List<ProductDto> findProductsByCategoryname(String categoryName){
 
-        return productDtos.stream().filter(p -> p.categoryName().equals(categoryName))
+        return productDtos.stream().filter(p -> p.getCategoryName().equals(categoryName))
                 .collect(Collectors.toList());
+    }
+
+    public ProductDto findProductById(int id) {
+
+        return productDtos.stream().filter(p -> p.getId() == id).findAny()
+                .orElseThrow(() -> new ProductNotFoundException(HttpStatus.NOT_FOUND,id + "Not Found"));
     }
 }

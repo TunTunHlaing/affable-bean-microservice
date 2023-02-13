@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html th:replace="layout/masterLayout :: layout(~{::main})" lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<body>
+  <main role="main">
+    <div class="container my-5">
+
+     <p class="lead my-3" th:if="${success}" >Your shopping cart contains <span th:text="${totalItem + ' items.'}"></span></p>
+
+
+      <div class="row mb-3">
+        <div class="col-md-4 justify-content-center">
+          <a href="#" class="btn btn-danger font-weight-bold ">clear cart</a>
+        </div>
+        <div class="col-md-4 justify-content-center">
+          <a th:href="@{/webui/}" class="btn btn-success font-weight-bold ">continue shopping</a>
+        </div>
+        <div class="col-md-4 justify-content-center">
+          <a href="#" class="btn btn-warning font-weight-bold">proceed to checkout</a>
+        </div>
+      </div>
+
+      <div class="row my-3">
+        <div class="col-md-6 offset-md-6">
+          <h3 class="text-muted" th:text="${'Total : $' + #numbers.formatDecimal(updateTotalPrice,1,2)}" th:if="${success}"></h3>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <form th:action="@{/webui/update-item}" method="post" th:object="${productDto}">
+          <table class="table-striped table">
+            <thead>
+            <tr>
+              <th>product</th>
+              <th>name</th>
+              <th>price</th>
+              <th>quantity</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <tr th:each="cart : ${productsInCart}">
+              <td >
+                <img src="../static/bootstrap/images/products/" alt=""
+                th:src="@{'/bootstrap/images/products/' + ${cart.name} + '.png'}">
+              </td>
+              <td th:text="${cart.name}"></td>
+              <td >
+                <h4></h4>
+                <span class="text-muted" th:text="${'( $' +cart.price+ '/unit)'}"></span>
+              </td>
+              <td>
+                <input type="number" min="1" th:if="${!success}" th:field="*{itemList}" class="form-control">
+                <p class="lead" th:if="${success}">
+                  <span th:text="${cart.quantity + ' * '}"></span>
+                  <span th:text="${cart.price + ' = '}"></span>
+                  <span th:text="${'$' + #numbers.formatDecimal(cart.quantity * cart.price,1,2)}"></span>
+                </p>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+            <input th:if="${!success}" type="submit" class="btn btn-info btn-lg" value="update">
+          </form>
+        </div>
+      </div>
+    </div>
+  </main>
+</body>
+</html>
