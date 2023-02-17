@@ -15,7 +15,7 @@
 <section>
     <header>
         <div class="row">
-            <div class="col-md-6 offset-md-6" th:if="${cartSize} > 0">
+            <div class="col-md-6 offset-md-6" th:if="${cartSize &gt; 0} ">
                 <a th:href="@{/webui/cart-view}" class="text-decoration-none">
                     <h3>
                         <img src="../../static/bootstrap/images/cart.gif" alt="" class="my-3"  width="25" height="25"  id=""
@@ -27,17 +27,30 @@
         </div>
 
         <div class="container my-5">
-            <img src="../../static/bootstrap/images/logo.png" alt=""
-            th:src="@{/bootstrap/images/logo.png}" id="logo">
-            <img src="../../static/bootstrap/images/logoText.png" alt=""
-            th:src="@{/bootstrap/images/logoText.png}" id="logoText">
-            <img src="../../static/bootstrap/images/stalk.png" alt=""
-            th:src="@{/bootstrap/images/stalk.png}" id="stalk">
+            <a th:href="@{/webui/}" class="text-decoration-none">
+                <img src="../../static/bootstrap/images/logo.png" alt=""
+                     th:src="@{/bootstrap/images/logo.png}" id="logo">
+                <img src="../../static/bootstrap/images/logoText.png" alt=""
+                     th:src="@{/bootstrap/images/logoText.png}" id="logoText">
+                <img src="../../static/bootstrap/images/stalk.png" alt=""
+                     th:src="@{/bootstrap/images/stalk.png}" id="stalk">
+            </a>
+
         </div>
     </header>
 </section>
 
-
+<section>
+    <div class="row">
+        <div class="offset-md-10 col-md-2">
+            <ul class="nav nav-tabs">
+                <li class="nav-item">
+                    <a th:href="@{/webui/find-transport-info}" class="nav-link">TransportInfo</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</section>
 
 <section>
     <div th:replace="${main}"></div>

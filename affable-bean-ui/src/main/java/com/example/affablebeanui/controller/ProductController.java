@@ -1,12 +1,16 @@
 package com.example.affablebeanui.controller;
 
 import com.example.affablebeanui.ds.CartBean;
+import com.example.affablebeanui.ds.CustomerOrder;
+import com.example.affablebeanui.ds.TransportInfoEntity;
 import com.example.affablebeanui.dto.ProductDto;
 import com.example.affablebeanui.dto.ProductDto1;
 import com.example.affablebeanui.service.ProductClientService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -84,6 +88,46 @@ public class ProductController {
         attributes.addFlashAttribute("success",true);
         //System.out.println("==================" + itemList);
         return "redirect:/webui/cart-view";
+    }
+
+    @GetMapping ("/checkout")
+    public String checkout(){
+        return "checkout";
+    }
+    @PostMapping("/checkout")
+    public String checkoutProcess(@RequestParam("name") String name,
+                                  @RequestParam("email") String email,
+                                  @ModelAttribute("updateTotalPrice") double total){
+
+       productClientService.checkout(name,email,total);
+        return "redirect:/webui/";
+    }
+
+
+    @GetMapping("/find-transport-info")
+    public String findTransportForm(){
+
+        return "findTransportForm";
+    }
+
+    @PostMapping("/find-transport-info")
+    public String processFinedTransport(@RequestParam("email") String email,
+                                        @RequestParam("password") String password){
+
+        this.entity = productClientService.findTransportInfo(email,password);
+        return "redirect:/webui/trans-port-entity/view";
+    }
+    TransportInfoEntity entity;
+    @GetMapping("/trans-port-entity/view")
+    public String transportInfoPageView(Model model){
+
+        model.addAttribute("entity",entity);
+        model.addAttribute("customerName",entity.getCustomerName().get(0));
+        model.addAttribute("product",entity.getProducts());
+        model.addAttribute("totalAmount",entity.getCustomerOrder()
+                .stream().map(CustomerOrder::getTotalAmount).mapToDouble(d -> d).sum());
+
+        return "transport-view";
     }
 
     @ModelAttribute("cartSize")

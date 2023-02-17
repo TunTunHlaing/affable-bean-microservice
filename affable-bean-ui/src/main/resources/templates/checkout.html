@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html th:replace="layout/masterLayout :: layout(~{::main})" lang="en" xmlns:th="http://www.thymeleaf.org">
+<body>
+    <main role="main">
+        <div class="container bg-light my-5">
+            <form th:action="@{/webui/checkout}" method="post">
+
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" class="form-control">
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" class="form-control">
+                </div>
+
+                <input type="submit" class="btn btn-primary" value="Checkout">
+            </form>
+        </div>
+    </main>
+</body>
+</html>
